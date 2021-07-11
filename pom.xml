@@ -8,6 +8,7 @@
     <version>5.0.10</version>
     <packaging>jar</packaging>
     <description>Redis executables for various platform</description>
+    <url>https://github.com/coney/redis-executable</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
@@ -20,7 +21,7 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/coney/redis-executable</url>
+        <url>https://github.com/coney/redis-executable/tree/main</url>
         <connection>scm:git:https://github.com/coney/redis-executable.git</connection>
         <developerConnection>scm:git:https://github.com/coney/redis-executable.git</developerConnection>
         <tag>${project.artifactId}-${project.version}</tag>
@@ -35,33 +36,25 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
                 <configuration>
-                    <compilerVersion>1.8</compilerVersion>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0-M4</version>
-                <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>release</releaseProfiles>
-                    <goals>deploy</goals>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+<!--                    <skipStagingRepositoryClose>true</skipStagingRepositoryClose>-->
                 </configuration>
             </plugin>
         </plugins>
